@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrom Autoplay Engine — KE-1</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23b3382c'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f6e8c6'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">CARROM<span>AUTOPLAY ENGINE</span></div>
+    <div class="subtitle">physics core + KE-1 shot-search AI — it plays itself</div>
+  </header>
+
+  <main>
+    <div id="boardWrap">
+      <canvas id="board"></canvas>
+      <div id="helpTip">click the baseline to place the striker · drag back &amp; release to shoot · H hint</div>
+    </div>
+
+    <aside id="panel">
+      <section class="card" id="scoreCard">
+        <div class="playerRow"><span class="chip white"></span><b>White</b><span class="banked"><i id="scoreWhite">0</i>/9</span></div>
+        <div class="playerRow"><span class="chip black"></span><b>Black</b><span class="banked"><i id="scoreBlack">0</i>/9</span></div>
+        <div class="queenRow">Queen <i id="queenState">on board</i></div>
+      </section>
+
+      <section class="card">
+        <div id="turnText">White to shoot</div>
+        <div id="phaseText">—</div>
+      </section>
+
+      <section class="card controls">
+        <label class="switch"><input type="checkbox" id="apWhite" checked /><span class="track"></span>Autoplay White</label>
+        <label class="switch"><input type="checkbox" id="apBlack" checked /><span class="track"></span>Autoplay Black</label>
+        <label class="switch"><input type="checkbox" id="linesToggle" checked /><span class="track"></span>Engine guidelines</label>
+        <label class="switch"><input type="checkbox" id="soundToggle" /><span class="track"></span>Sound</label>
+        <label class="switch"><input type="checkbox" id="perfectToggle" /><span class="track"></span>Perfect execution (no wobble)</label>
+
+        <div class="seg" id="speedSeg">
+          <button data-s="0.5">½×</button>
+          <button data-s="1" class="active">1×</button>
+          <button data-s="2">2×</button>
+          <button data-s="4">4×</button>
+          <button data-s="1e9">∞</button>
+        </div>
+
+        <div class="btnRow">
+          <button id="btnNew" class="primary">New Game</button>
+          <button id="btnHint">Hint</button>
+          <button id="btnShoot">Engine Shot</button>
+        </div>
+      </section>
+
+      <section class="card" id="engineCard">
+        <div class="cardTitle">KE-1 ENGINE</div>
+        <div class="statRow">
+          <div class="stat"><span>sims</span><i id="statEvals">–</i></div>
+          <div class="stat"><span>think</span><i id="statTime">–</i></div>
+          <div class="stat"><span>score</span><i id="statScore">–</i></div>
+        </div>
+        <div id="statDesc">–</div>
+      </section>
+
+      <section class="card">
+        <div class="cardTitle">LOG</div>
+        <ul id="logList"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    Standalone physics/AI demo — not affiliated with, and does not interact
+    with, any commercial carrom game. Keys: N new game · H hint · E engine shot ·
+    ←/→ move striker · Esc unplace.
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
